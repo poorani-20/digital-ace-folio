@@ -167,7 +167,7 @@ function useTable<T extends Row>(table: string, orderBy = "sort_order") {
 
   const refresh = useCallback(async () => {
     setLoading(true);
-    const { data, error } = await supabase.from(table).select("*").order(orderBy, { ascending: true });
+    const { data, error } = await (supabase as any).from(table).select("*").order(orderBy, { ascending: true });
     if (error) toast.error(error.message);
     setRows((data as T[]) || []);
     setLoading(false);
@@ -277,7 +277,7 @@ function ListSection<T extends Row>({
   const setDraft = (id: string, patch: Row) => setDrafts((d) => ({ ...d, [id]: { ...getDraft({ id, ...rows.find((x) => x.id === id) }), ...patch } }));
 
   const add = async () => {
-    const { error } = await supabase.from(table).insert({ ...(defaults || {}) });
+    const { error } = await (supabase as any).from(table).insert({ ...(defaults || {}) });
     if (error) return toast.error(error.message);
     refresh();
   };
@@ -286,7 +286,7 @@ function ListSection<T extends Row>({
     const patch = drafts[id];
     if (!patch) return;
     const { id: _id, created_at, updated_at, ...update } = patch as any;
-    const { error } = await supabase.from(table).update(update).eq("id", id);
+    const { error } = await (supabase as any).from(table).update(update).eq("id", id);
     if (error) return toast.error(error.message);
     toast.success("Saved");
     setDrafts((d) => { const n = { ...d }; delete n[id]; return n; });
@@ -295,7 +295,7 @@ function ListSection<T extends Row>({
 
   const del = async (id: string) => {
     if (!confirm("Delete this item?")) return;
-    const { error } = await supabase.from(table).delete().eq("id", id);
+    const { error } = await (supabase as any).from(table).delete().eq("id", id);
     if (error) return toast.error(error.message);
     refresh();
   };
