@@ -146,6 +146,48 @@ export type Database = {
         }
         Relationships: []
       }
+      education: {
+        Row: {
+          created_at: string
+          degree: string | null
+          description: string | null
+          end_year: string | null
+          field: string | null
+          grade: string | null
+          id: string
+          institution: string
+          sort_order: number | null
+          start_year: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          degree?: string | null
+          description?: string | null
+          end_year?: string | null
+          field?: string | null
+          grade?: string | null
+          id?: string
+          institution: string
+          sort_order?: number | null
+          start_year?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          degree?: string | null
+          description?: string | null
+          end_year?: string | null
+          field?: string | null
+          grade?: string | null
+          id?: string
+          institution?: string
+          sort_order?: number | null
+          start_year?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       gallery: {
         Row: {
           category: string | null
@@ -263,6 +305,36 @@ export type Database = {
         }
         Relationships: []
       }
+      skills: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: string
+          level: number | null
+          name: string
+          sort_order: number | null
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          level?: number | null
+          name: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          level?: number | null
+          name?: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -289,6 +361,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      claim_admin_if_none: { Args: never; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
