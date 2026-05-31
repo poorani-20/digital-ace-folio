@@ -169,7 +169,7 @@ function useTable<T extends Row>(table: string, orderBy = "sort_order") {
     setLoading(true);
     const { data, error } = await (supabase as any).from(table).select("*").order(orderBy, { ascending: true });
     if (error) toast.error(error.message);
-    setRows((data as T[]) || []);
+    setRows((data as unknown as T[]) || []);
     setLoading(false);
   }, [table, orderBy]);
 
