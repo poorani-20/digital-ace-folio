@@ -7,7 +7,7 @@ import {
 import { toast } from "sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { supabase } from "@/integrations/supabase/client";
-import portrait from "@/assets/portrait.jpg";
+
 import {
   profile, stats, education, technicalSkills, softwareSkills, softSkills,
   projects, certifications, internships, research, achievements, workshops,
@@ -54,47 +54,33 @@ export function Nav() {
 export function Hero() {
   return (
     <section id="top" className="py-20 lg:py-28 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div className="lg:col-span-7 animate-fade-up">
-          <span className="text-primary text-sm font-medium tracking-widest uppercase mb-4 block">
-            {profile.tagline}
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-heading leading-[1.05] text-balance mb-6 max-w-[20ch]">
-            {profile.headline}
-          </h1>
-          <p className="text-lg text-foreground/80 leading-relaxed text-pretty max-w-[52ch] mb-8">
-            {profile.intro}
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <a href="#projects" className="px-6 py-2.5 bg-surface text-heading text-sm font-medium rounded-md ring-1 ring-border hover:bg-surface-2 transition-colors inline-flex items-center gap-2">
-              View Projects <ArrowRight className="size-4" />
+      <div className="max-w-6xl mx-auto animate-fade-up">
+        <span className="text-primary text-sm font-medium tracking-widest uppercase mb-4 block">
+          {profile.tagline}
+        </span>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-heading leading-[1.05] text-balance mb-6 max-w-[20ch]">
+          {profile.headline}
+        </h1>
+        <p className="text-lg text-foreground/80 leading-relaxed text-pretty max-w-[60ch] mb-8">
+          {profile.intro}
+        </p>
+        <div className="flex flex-wrap items-center gap-4">
+          <a href="#projects" className="px-6 py-2.5 bg-surface text-heading text-sm font-medium rounded-md ring-1 ring-border hover:bg-surface-2 transition-colors inline-flex items-center gap-2">
+            View Projects <ArrowRight className="size-4" />
+          </a>
+          <a href="#contact" className="px-6 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity inline-flex items-center gap-2">
+            <Download className="size-4" /> Download CV
+          </a>
+          <div className="flex gap-3 ml-2">
+            <a href={profile.socials.github} aria-label="GitHub" className="size-9 grid place-items-center rounded-md ring-1 ring-border text-muted-foreground hover:text-primary hover:ring-primary/40 transition-all">
+              <Github className="size-4" />
             </a>
-            <a href="#contact" className="px-6 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity inline-flex items-center gap-2">
-              <Download className="size-4" /> Download CV
+            <a href={profile.socials.linkedin} aria-label="LinkedIn" className="size-9 grid place-items-center rounded-md ring-1 ring-border text-muted-foreground hover:text-primary hover:ring-primary/40 transition-all">
+              <Linkedin className="size-4" />
             </a>
-            <div className="flex gap-3 ml-2">
-              <a href={profile.socials.github} aria-label="GitHub" className="size-9 grid place-items-center rounded-md ring-1 ring-border text-muted-foreground hover:text-primary hover:ring-primary/40 transition-all">
-                <Github className="size-4" />
-              </a>
-              <a href={profile.socials.linkedin} aria-label="LinkedIn" className="size-9 grid place-items-center rounded-md ring-1 ring-border text-muted-foreground hover:text-primary hover:ring-primary/40 transition-all">
-                <Linkedin className="size-4" />
-              </a>
-              <a href={profile.socials.twitter} aria-label="Twitter" className="size-9 grid place-items-center rounded-md ring-1 ring-border text-muted-foreground hover:text-primary hover:ring-primary/40 transition-all">
-                <Twitter className="size-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="lg:col-span-5 animate-fade-up" style={{ animationDelay: "120ms" }}>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-primary/10 blur-3xl rounded-full opacity-50" aria-hidden />
-            <img
-              src={portrait}
-              alt={`${profile.name} portrait`}
-              width={1080}
-              height={1350}
-              className="relative w-full aspect-[4/5] object-cover rounded-xl ring-1 ring-border"
-            />
+            <a href={profile.socials.twitter} aria-label="Twitter" className="size-9 grid place-items-center rounded-md ring-1 ring-border text-muted-foreground hover:text-primary hover:ring-primary/40 transition-all">
+              <Twitter className="size-4" />
+            </a>
           </div>
         </div>
       </div>
