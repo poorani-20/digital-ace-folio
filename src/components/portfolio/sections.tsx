@@ -134,10 +134,10 @@ export function About() {
           </p>
           <div className="grid grid-cols-2 gap-4">
             {[
-              ["Areas of interest", "Robotics, CFD, EVs, Embedded ML"],
-              ["Strengths", "Systems thinking, fast prototyping"],
-              ["Future goal", "MS in Robotics — Fall 2025"],
-              ["Currently", "Open to internships & research"],
+              ["Areas of interest", "VLSI, Embedded Systems, IoT, DSP"],
+              ["Strengths", "Problem solving, fast learning"],
+              ["Future goal", "Core ECE / Embedded engineering role"],
+              ["Currently", "Open to internships & projects"],
             ].map(([h, b]) => (
               <div key={h} className="glass rounded-lg p-4">
                 <div className="text-[11px] uppercase tracking-widest text-muted-foreground mb-1">{h}</div>
