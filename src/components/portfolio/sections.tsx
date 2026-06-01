@@ -292,50 +292,61 @@ export function Projects() {
 }
 
 export function Experience() {
+  if (internships.length === 0 && research.length === 0 && achievements.length === 0) return null;
   return (
     <section id="experience" className="py-24 px-6">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16">
-        <div>
-          <SectionHeading kicker="05 / Industry" title="Internships & training." />
-          <div className="space-y-6">
-            {internships.map((i) => (
-              <div key={i.company} className="glass rounded-xl p-5">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <div>
-                    <div className="font-medium text-heading">{i.role}</div>
-                    <div className="text-sm text-foreground/70">{i.company}</div>
+        {internships.length > 0 && (
+          <div>
+            <SectionHeading kicker="05 / Industry" title="Internships & training." />
+            <div className="space-y-6">
+              {internships.map((i) => (
+                <div key={i.company} className="glass rounded-xl p-5">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div>
+                      <div className="font-medium text-heading">{i.role}</div>
+                      <div className="text-sm text-foreground/70">{i.company}</div>
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{i.period}</span>
                   </div>
-                  <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{i.period}</span>
+                  <p className="text-sm text-foreground/70 leading-relaxed">{i.learned}</p>
                 </div>
-                <p className="text-sm text-foreground/70 leading-relaxed">{i.learned}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div>
-          <SectionHeading kicker="06 / Research" title="Publications & papers." />
-          <div className="space-y-4 mb-12">
-            {research.map((r) => (
-              <div key={r.title} className="glass rounded-xl p-5 flex items-start gap-4">
-                <BookOpen className="size-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-heading text-sm leading-snug">{r.title}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{r.venue} • {r.type}</div>
-                </div>
+        <div className={internships.length === 0 ? "lg:col-span-2" : ""}>
+          {research.length > 0 && (
+            <>
+              <SectionHeading kicker="06 / Research" title="Publications & papers." />
+              <div className="space-y-4 mb-12">
+                {research.map((r) => (
+                  <div key={r.title} className="glass rounded-xl p-5 flex items-start gap-4">
+                    <BookOpen className="size-5 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-medium text-heading text-sm leading-snug">{r.title}</div>
+                      <div className="text-xs text-muted-foreground mt-1">{r.venue} • {r.type}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
 
-          <SectionHeading kicker="07 / Recognition" title="Achievements & awards." />
-          <div className="grid grid-cols-1 gap-3">
-            {achievements.map((a) => (
-              <div key={a} className="flex items-start gap-3 p-3 rounded-lg bg-surface/60 ring-1 ring-border">
-                <Trophy className="size-4 text-primary shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground/85">{a}</span>
+          {achievements.length > 0 && (
+            <>
+              <SectionHeading kicker="07 / Recognition" title="Achievements & awards." />
+              <div className="grid grid-cols-1 gap-3">
+                {achievements.map((a) => (
+                  <div key={a} className="flex items-start gap-3 p-3 rounded-lg bg-surface/60 ring-1 ring-border">
+                    <Trophy className="size-4 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm text-foreground/85">{a}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
       </div>
     </section>
