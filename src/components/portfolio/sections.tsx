@@ -515,11 +515,26 @@ export function Resume() {
 }
 
 export function Contact() {
+  const [submitting, setSubmitting] = useState(false);
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const name = String(fd.get("name") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const message = String(fd.get("message") || "").trim();
+    if (!name || !email || !message) return;
+    setSubmitting(true);
+    const { error } = await supabase.from("contact_messages").insert({ name, email, message });
+    setSubmitting(false);
+    if (error) { toast.error("Couldn't send message. Please try again."); return; }
+    toast.success("Thanks! I'll get back to you shortly.");
+    e.currentTarget.reset();
+  }
   return (
     <section id="contact" className="py-24 px-6 border-t border-border">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
         <div>
-          <SectionHeading kicker="15 / Get in touch" title="Let's build something." desc="Actively seeking graduate engineering roles and research internships for 2025." />
+          <SectionHeading kicker="15 / Get in touch" title="Let's build something." desc="Open to internships, core ECE roles, and collaborative projects." />
           <div className="space-y-3 mb-8">
             <a href={`mailto:${profile.email}`} className="flex items-center gap-3 text-sm font-mono text-foreground/85 hover:text-primary transition-colors">
               <Mail className="size-4 text-primary" /> {profile.email}
