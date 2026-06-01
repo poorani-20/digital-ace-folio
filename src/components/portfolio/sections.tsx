@@ -4,7 +4,9 @@ import {
   FileText, Award, GraduationCap, Briefcase, BookOpen, Trophy, Users, Palette,
   Code2, Sparkles, ExternalLink,
 } from "lucide-react";
+import { toast } from "sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { supabase } from "@/integrations/supabase/client";
 import portrait from "@/assets/portrait.jpg";
 import {
   profile, stats, education, technicalSkills, softwareSkills, softSkills,
@@ -126,16 +128,16 @@ export function About() {
         <SectionHeading kicker="01 / About" title="A glimpse into who I am." />
         <div className="grid lg:grid-cols-2 gap-12">
           <p className="text-foreground/80 leading-relaxed text-lg text-pretty">
-            I build at the intersection of mechanical hardware and embedded intelligence. My objective
-            is to join a research-driven engineering team where I can ship resilient systems — from CAD
-            to controller to field deployment — and grow toward a graduate program in robotics.
+            I'm a dedicated Electronics &amp; Communication Engineering student at Sona College of
+            Technology, Salem. I work across Digital Electronics, Embedded Systems, Signal Processing,
+            IoT and VLSI Design — and enjoy turning theory into working hardware and software.
           </p>
           <div className="grid grid-cols-2 gap-4">
             {[
-              ["Areas of interest", "Robotics, CFD, EVs, Embedded ML"],
-              ["Strengths", "Systems thinking, fast prototyping"],
-              ["Future goal", "MS in Robotics — Fall 2025"],
-              ["Currently", "Open to internships & research"],
+              ["Areas of interest", "VLSI, Embedded Systems, IoT, DSP"],
+              ["Strengths", "Problem solving, fast learning"],
+              ["Future goal", "Core ECE / Embedded engineering role"],
+              ["Currently", "Open to internships & projects"],
             ].map(([h, b]) => (
               <div key={h} className="glass rounded-lg p-4">
                 <div className="text-[11px] uppercase tracking-widest text-muted-foreground mb-1">{h}</div>
@@ -290,50 +292,61 @@ export function Projects() {
 }
 
 export function Experience() {
+  if (internships.length === 0 && research.length === 0 && achievements.length === 0) return null;
   return (
     <section id="experience" className="py-24 px-6">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16">
-        <div>
-          <SectionHeading kicker="05 / Industry" title="Internships & training." />
-          <div className="space-y-6">
-            {internships.map((i) => (
-              <div key={i.company} className="glass rounded-xl p-5">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <div>
-                    <div className="font-medium text-heading">{i.role}</div>
-                    <div className="text-sm text-foreground/70">{i.company}</div>
+        {internships.length > 0 && (
+          <div>
+            <SectionHeading kicker="05 / Industry" title="Internships & training." />
+            <div className="space-y-6">
+              {internships.map((i) => (
+                <div key={i.company} className="glass rounded-xl p-5">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div>
+                      <div className="font-medium text-heading">{i.role}</div>
+                      <div className="text-sm text-foreground/70">{i.company}</div>
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{i.period}</span>
                   </div>
-                  <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{i.period}</span>
+                  <p className="text-sm text-foreground/70 leading-relaxed">{i.learned}</p>
                 </div>
-                <p className="text-sm text-foreground/70 leading-relaxed">{i.learned}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div>
-          <SectionHeading kicker="06 / Research" title="Publications & papers." />
-          <div className="space-y-4 mb-12">
-            {research.map((r) => (
-              <div key={r.title} className="glass rounded-xl p-5 flex items-start gap-4">
-                <BookOpen className="size-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-medium text-heading text-sm leading-snug">{r.title}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{r.venue} • {r.type}</div>
-                </div>
+        <div className={internships.length === 0 ? "lg:col-span-2" : ""}>
+          {research.length > 0 && (
+            <>
+              <SectionHeading kicker="06 / Research" title="Publications & papers." />
+              <div className="space-y-4 mb-12">
+                {research.map((r) => (
+                  <div key={r.title} className="glass rounded-xl p-5 flex items-start gap-4">
+                    <BookOpen className="size-5 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-medium text-heading text-sm leading-snug">{r.title}</div>
+                      <div className="text-xs text-muted-foreground mt-1">{r.venue} • {r.type}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
 
-          <SectionHeading kicker="07 / Recognition" title="Achievements & awards." />
-          <div className="grid grid-cols-1 gap-3">
-            {achievements.map((a) => (
-              <div key={a} className="flex items-start gap-3 p-3 rounded-lg bg-surface/60 ring-1 ring-border">
-                <Trophy className="size-4 text-primary shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground/85">{a}</span>
+          {achievements.length > 0 && (
+            <>
+              <SectionHeading kicker="07 / Recognition" title="Achievements & awards." />
+              <div className="grid grid-cols-1 gap-3">
+                {achievements.map((a) => (
+                  <div key={a} className="flex items-start gap-3 p-3 rounded-lg bg-surface/60 ring-1 ring-border">
+                    <Trophy className="size-4 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm text-foreground/85">{a}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
       </div>
     </section>
@@ -431,6 +444,7 @@ export function Gallery() {
 }
 
 export function Testimonials() {
+  if (testimonials.length === 0) return null;
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -452,6 +466,7 @@ export function Testimonials() {
 }
 
 export function Blog() {
+  if (blog.length === 0) return null;
   return (
     <section id="blog" className="py-24 px-6 bg-surface/40">
       <div className="max-w-6xl mx-auto">
@@ -500,11 +515,26 @@ export function Resume() {
 }
 
 export function Contact() {
+  const [submitting, setSubmitting] = useState(false);
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const name = String(fd.get("name") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const message = String(fd.get("message") || "").trim();
+    if (!name || !email || !message) return;
+    setSubmitting(true);
+    const { error } = await supabase.from("contact_messages").insert({ name, email, message });
+    setSubmitting(false);
+    if (error) { toast.error("Couldn't send message. Please try again."); return; }
+    toast.success("Thanks! I'll get back to you shortly.");
+    e.currentTarget.reset();
+  }
   return (
     <section id="contact" className="py-24 px-6 border-t border-border">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
         <div>
-          <SectionHeading kicker="15 / Get in touch" title="Let's build something." desc="Actively seeking graduate engineering roles and research internships for 2025." />
+          <SectionHeading kicker="15 / Get in touch" title="Let's build something." desc="Open to internships, core ECE roles, and collaborative projects." />
           <div className="space-y-3 mb-8">
             <a href={`mailto:${profile.email}`} className="flex items-center gap-3 text-sm font-mono text-foreground/85 hover:text-primary transition-colors">
               <Mail className="size-4 text-primary" /> {profile.email}
@@ -523,26 +553,23 @@ export function Contact() {
           </div>
         </div>
 
-        <form
-          onSubmit={(e) => { e.preventDefault(); alert("Thanks! I'll get back to you shortly."); }}
-          className="glass rounded-2xl p-6 space-y-4"
-        >
+        <form onSubmit={onSubmit} className="glass rounded-2xl p-6 space-y-4">
           <div className="grid sm:grid-cols-2 gap-4">
             <label className="block">
               <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Name</span>
-              <input required maxLength={100} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="Your name" />
+              <input name="name" required maxLength={100} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="Your name" />
             </label>
             <label className="block">
               <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Email</span>
-              <input required type="email" maxLength={255} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="you@email.com" />
+              <input name="email" required type="email" maxLength={255} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="you@email.com" />
             </label>
           </div>
           <label className="block">
             <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Message</span>
-            <textarea required maxLength={1000} rows={5} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition resize-none" placeholder="Tell me about the role or project..." />
+            <textarea name="message" required maxLength={1000} rows={5} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition resize-none" placeholder="Tell me about the role or project..." />
           </label>
-          <button type="submit" className="w-full py-3 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2">
-            Send message <ArrowRight className="size-4" />
+          <button type="submit" disabled={submitting} className="w-full py-3 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60">
+            {submitting ? "Sending…" : (<>Send message <ArrowRight className="size-4" /></>)}
           </button>
         </form>
       </div>
