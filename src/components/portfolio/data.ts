@@ -9,8 +9,8 @@ export const profile = {
   headline: "Building intelligent electronics, from silicon to signal.",
   intro:
     "Dedicated Electronics and Communication Engineering student at Sona College of Technology, Salem. Focused on Digital Electronics, Embedded Systems, Signal Processing, IoT, VLSI Design, and software development — passionate about solving real-world engineering challenges through innovation and technology.",
-  email: "poorani.mk@example.com",
-  phone: "+91 00000 00000",
+  email: "pooranimahe20@gmail.com",
+  phone: "+91 77084 13057",
   location: "Salem, Tamil Nadu, India",
   socials: {
     github: "https://github.com",
@@ -113,6 +113,8 @@ export const research: { title: string; venue: string; type: string }[] = [];
 export const testimonials: { quote: string; name: string; role: string }[] = [];
 
 export const achievements = [
+  "Scored 97% in 10th Standard (SSLC)",
+  "Scored 84% in 12th Standard (HSC)",
   "NPTEL Design Thinking — Elite certification",
   "Participant — Smart India Hackathon",
   "Participant — AI IDEATHON",
@@ -129,6 +131,8 @@ export const workshops = [
 ];
 
 export const extracurriculars = [
+  "Joint Secretary — IQEQ Club",
+  "Participated in Speak for India Competition — Zonal Level",
   "Active member — Departmental technical events",
   "Art & creative illustration",
   "Volunteer — College technical fests",
