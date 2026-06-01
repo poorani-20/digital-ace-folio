@@ -444,6 +444,7 @@ export function Gallery() {
 }
 
 export function Testimonials() {
+  if (testimonials.length === 0) return null;
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -465,6 +466,7 @@ export function Testimonials() {
 }
 
 export function Blog() {
+  if (blog.length === 0) return null;
   return (
     <section id="blog" className="py-24 px-6 bg-surface/40">
       <div className="max-w-6xl mx-auto">
