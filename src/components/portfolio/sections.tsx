@@ -553,26 +553,23 @@ export function Contact() {
           </div>
         </div>
 
-        <form
-          onSubmit={(e) => { e.preventDefault(); alert("Thanks! I'll get back to you shortly."); }}
-          className="glass rounded-2xl p-6 space-y-4"
-        >
+        <form onSubmit={onSubmit} className="glass rounded-2xl p-6 space-y-4">
           <div className="grid sm:grid-cols-2 gap-4">
             <label className="block">
               <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Name</span>
-              <input required maxLength={100} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="Your name" />
+              <input name="name" required maxLength={100} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="Your name" />
             </label>
             <label className="block">
               <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Email</span>
-              <input required type="email" maxLength={255} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="you@email.com" />
+              <input name="email" required type="email" maxLength={255} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition" placeholder="you@email.com" />
             </label>
           </div>
           <label className="block">
             <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Message</span>
-            <textarea required maxLength={1000} rows={5} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition resize-none" placeholder="Tell me about the role or project..." />
+            <textarea name="message" required maxLength={1000} rows={5} className="mt-1 w-full bg-surface ring-1 ring-border rounded-md px-3 py-2 text-sm focus:ring-primary outline-none transition resize-none" placeholder="Tell me about the role or project..." />
           </label>
-          <button type="submit" className="w-full py-3 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2">
-            Send message <ArrowRight className="size-4" />
+          <button type="submit" disabled={submitting} className="w-full py-3 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60">
+            {submitting ? "Sending…" : (<>Send message <ArrowRight className="size-4" /></>)}
           </button>
         </form>
       </div>
