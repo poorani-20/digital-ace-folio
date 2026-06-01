@@ -4,7 +4,9 @@ import {
   FileText, Award, GraduationCap, Briefcase, BookOpen, Trophy, Users, Palette,
   Code2, Sparkles, ExternalLink,
 } from "lucide-react";
+import { toast } from "sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { supabase } from "@/integrations/supabase/client";
 import portrait from "@/assets/portrait.jpg";
 import {
   profile, stats, education, technicalSkills, softwareSkills, softSkills,
