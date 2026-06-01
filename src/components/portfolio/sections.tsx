@@ -128,9 +128,9 @@ export function About() {
         <SectionHeading kicker="01 / About" title="A glimpse into who I am." />
         <div className="grid lg:grid-cols-2 gap-12">
           <p className="text-foreground/80 leading-relaxed text-lg text-pretty">
-            I build at the intersection of mechanical hardware and embedded intelligence. My objective
-            is to join a research-driven engineering team where I can ship resilient systems — from CAD
-            to controller to field deployment — and grow toward a graduate program in robotics.
+            I'm a dedicated Electronics &amp; Communication Engineering student at Sona College of
+            Technology, Salem. I work across Digital Electronics, Embedded Systems, Signal Processing,
+            IoT and VLSI Design — and enjoy turning theory into working hardware and software.
           </p>
           <div className="grid grid-cols-2 gap-4">
             {[
