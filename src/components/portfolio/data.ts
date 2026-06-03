@@ -13,7 +13,7 @@ export const profile = {
   phone: "+91 77084 13057",
   location: "Salem, Tamil Nadu, India",
   socials: {
-    github: "https://github.com",
+    github: "https://github.com/poorani-20",
     linkedin: "https://www.linkedin.com/in/poorani-mahendiran-902187326",
     twitter: "https://twitter.com",
   },
