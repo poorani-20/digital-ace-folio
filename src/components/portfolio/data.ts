@@ -11,7 +11,7 @@ export const profile = {
     "Dedicated Electronics and Communication Engineering student at Sona College of Technology, Salem. Focused on Digital Electronics, Embedded Systems, Signal Processing, IoT, VLSI Design, and software development — passionate about solving real-world engineering challenges through innovation and technology.",
   email: "pooranimahe20@gmail.com",
   phone: "+91 77084 13057",
-  location: "Salem, Tamil Nadu, India",
+  location: "Dharmapuri, Tamil Nadu, India",
   socials: {
     github: "https://github.com/poorani-20",
     linkedin: "https://www.linkedin.com/in/poorani-mahendiran-902187326",
@@ -96,7 +96,11 @@ export const projects = [
 ];
 
 export const certifications = [
-  { name: "NPTEL Design Thinking — Elite", org: "NPTEL", date: "—", category: "Design" },
+  { name: "Foundational Course on Applied Machine Learning & AI (1934 hrs)", org: "Confederation of Indian Industry (CII) • NCVET", date: "Jul 2026", category: "AI / ML" },
+  { name: "GenAI Powered Data Analytics Job Simulation", org: "Forage (Tata)", date: "Jun 2026", category: "Data" },
+  { name: "Blockchain and the Internet of Things", org: "Nasscom Foundation & Zikshaa", date: "—", category: "Emerging Tech" },
+  { name: "Advanced Embedded Systems Application & IoT Programming", org: "Taras Systems and Solutions", date: "—", category: "Embedded" },
+  { name: "NPTEL Design Thinking — Elite (75%)", org: "NPTEL", date: "—", category: "Design" },
   { name: "Digital Application Fundamentals (STEM)", org: "FutureSkills Prime", date: "—", category: "Digital" },
   { name: "Data Processing and Visualization", org: "FutureSkills Prime", date: "—", category: "Data" },
   { name: "LabVIEW Certification", org: "NI / Workshop", date: "—", category: "Tools" },
@@ -123,11 +127,11 @@ export const achievements = [
 ];
 
 export const workshops = [
-  { name: "PCB Design Workshop", org: "Technical Workshop", date: "—" },
-  { name: "LoRaWAN Workshop", org: "Technical Workshop", date: "—" },
-  { name: "Arduino Workshop", org: "Technical Workshop", date: "—" },
-  { name: "AI in ERP", org: "Industry Talk", date: "—" },
-  { name: "Wireless Communication", org: "Technical Workshop", date: "—" },
+  { name: "Industrial Training — PCB Design & Assembly", org: "SUNSHIV Electronic Solution", date: "Mar 2025" },
+  { name: "ARD-U-KNOW — Arduino & Sensors", org: "Technical Workshop", date: "—" },
+  { name: "LoRaWAN — Low-Power Wide-Area Networks", org: "Technical Workshop", date: "—" },
+  { name: "Frequency Modulation Radio", org: "Technical Workshop", date: "—" },
+  { name: "AI Influence in ERP", org: "SAP Technologies", date: "—" },
 ];
 
 export const extracurriculars = [
