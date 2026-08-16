@@ -7,6 +7,9 @@ import {
 import { toast } from "sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { supabase } from "@/integrations/supabase/client";
+import resumeAsset from "@/assets/resume.pdf.asset.json";
+
+const RESUME_URL = resumeAsset.url;
 
 import {
   profile, stats, education, technicalSkills, softwareSkills, softSkills,
@@ -39,7 +42,8 @@ export function Nav() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <a
-            href="#contact"
+            href={RESUME_URL}
+            download="Poorani_MK_Resume.pdf"
             className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium bg-primary text-primary-foreground py-2 px-3 rounded-md ring-1 ring-primary/20 hover:opacity-90 transition-opacity"
           >
             <Download className="size-4" />
@@ -68,7 +72,7 @@ export function Hero() {
           <a href="#projects" className="px-6 py-2.5 bg-surface text-heading text-sm font-medium rounded-md ring-1 ring-border hover:bg-surface-2 transition-colors inline-flex items-center gap-2">
             View Projects <ArrowRight className="size-4" />
           </a>
-          <a href="#contact" className="px-6 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity inline-flex items-center gap-2">
+          <a href={RESUME_URL} download="Poorani_MK_Resume.pdf" className="px-6 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity inline-flex items-center gap-2">
             <Download className="size-4" /> Download CV
           </a>
           <div className="flex gap-3 ml-2">
@@ -484,14 +488,14 @@ export function Resume() {
           <div>
             <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-1">14 / Document</div>
             <h2 className="text-2xl font-semibold text-heading mb-1">Resume / CV</h2>
-            <p className="text-sm text-foreground/70 max-w-[50ch]">Full résumé with detailed coursework, project breakdowns, and references.</p>
+            <p className="text-sm text-foreground/70 max-w-[50ch]">Complete résumé — education, certifications, workshops, projects and achievements.</p>
           </div>
         </div>
         <div className="flex gap-3">
-          <a href="#" className="px-5 py-2.5 bg-surface ring-1 ring-border rounded-md text-sm font-medium hover:bg-surface-2 transition-colors inline-flex items-center gap-2">
+          <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-surface ring-1 ring-border rounded-md text-sm font-medium hover:bg-surface-2 transition-colors inline-flex items-center gap-2">
             <ExternalLink className="size-4" /> Preview
           </a>
-          <a href="#" className="px-5 py-2.5 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center gap-2">
+          <a href={RESUME_URL} download="Poorani_MK_Resume.pdf" className="px-5 py-2.5 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity inline-flex items-center gap-2">
             <Download className="size-4" /> Download PDF
           </a>
         </div>
